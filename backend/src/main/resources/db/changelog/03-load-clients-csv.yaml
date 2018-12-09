@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: "3"
+      author: "teixeiradiego"
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  name: "name"
+                  type: "STRING"
+              - column:
+                  name: "photo_url"
+                  type: "STRING"
+            encoding: "UTF-8"
+            file: "db/changelog/people.csv"
+            quotchar: '"'
+            separator: ","
+            schemaName: "client_list"
+            tableName: "client"
+      rollback: truncate table client_list.client;
+  - changeSet:
+      id: "4"
+      author: "teixeiradiego"
+      changes:
+        - customChange:
+            class: "com.teixeiradiego.clientlist.db.customchanges.DownloadClientPhoto"
+      rollback: 
+        - customRollback:
+            class: "com.teixeiradiego.clientlist.db.customchanges.DownloadClientPhotoRollback"
+        

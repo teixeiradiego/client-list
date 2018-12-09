@@ -1,0 +1,18 @@
+
+databaseChangeLog:
+  - preconditions:
+    - dbms:
+        type: "postgresql" 
+    - runningAs:
+        username: "postgres"
+        
+  - include:
+      relativeToChangelogFile: "true"
+      file: "01-create-schema.sql"
+  - include:
+      relativeToChangelogFile: "true"
+      file: "02-create-tables.sql"
+  - include:
+      relativeToChangelogFile: "true"
+      file: "03-load-clients-csv.yaml"
+  
