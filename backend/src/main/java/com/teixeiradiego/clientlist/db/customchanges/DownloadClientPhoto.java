@@ -8,10 +8,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
 import liquibase.change.custom.CustomTaskChange;
+import liquibase.configuration.GlobalConfiguration;
 import liquibase.database.Database;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.CustomChangeException;
@@ -20,9 +24,11 @@ import liquibase.exception.SetupException;
 import liquibase.exception.ValidationErrors;
 import liquibase.resource.ResourceAccessor;
 
+@Component
 public class DownloadClientPhoto implements CustomTaskChange {
 
-	
+	private ResourceAccessor resourceAccessor;
+	private Properties properties;
 	
 	@Override
 	public String getConfirmationMessage() {
@@ -32,11 +38,23 @@ public class DownloadClientPhoto implements CustomTaskChange {
 	@Override
 	public void setUp() throws SetupException {
 		
+		properties = new Properties();
+		
+		try (
+			InputStream inputStream = resourceAccessor.getResourcesAsStream("application.properties").iterator().next();
+		) {
+			
+			properties.load(inputStream);
+			
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
 	@Override
-	public void setFileOpener(ResourceAccessor resourceAccessor) {
-		
+	public void setFileOpener(ResourceAccessor resourceAccessor) {		
+		this.resourceAccessor = resourceAccessor;		
 	}
 
 	@Override
@@ -46,17 +64,19 @@ public class DownloadClientPhoto implements CustomTaskChange {
 
 	@Override
 	public void execute(Database database) throws CustomChangeException {
-		
+
 		JdbcConnection connection = (JdbcConnection) database.getConnection();
 		
-		File photosFolder = new File("storage/client-photos/");
+		File photosFolder = new File(properties.getProperty("app.storage") + File.separator + properties.getProperty("app.storage.clients.photos"));
 		photosFolder.mkdirs();
-			         
+			 
+		String defaultSchema = properties.getProperty("spring.liquibase.defaultSchema");
+		
     	ResultSet resultSet = null;
     	
 		try {
 			
-			resultSet = connection.createStatement().executeQuery("Select * from client_list.client");
+			resultSet = connection.createStatement().executeQuery("Select * from " + defaultSchema + ".client");
 			    	
 	    	while (resultSet.next()) {
 				
