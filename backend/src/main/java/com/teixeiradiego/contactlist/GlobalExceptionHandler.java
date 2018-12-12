@@ -1,4 +1,4 @@
-package com.teixeiradiego.clientlist;
+package com.teixeiradiego.contactlist;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

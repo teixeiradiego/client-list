@@ -1,4 +1,4 @@
-package com.teixeiradiego.clientlist.models;
+package com.teixeiradiego.contactlist.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "client")
-public class Client {
+@Table(name = "person")
+public class Person {
 	
 	@Id
 	private Integer id;

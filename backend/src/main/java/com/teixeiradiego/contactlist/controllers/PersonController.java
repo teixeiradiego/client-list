@@ -1,4 +1,4 @@
-package com.teixeiradiego.clientlist.controllers;
+package com.teixeiradiego.contactlist.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teixeiradiego.clientlist.models.Client;
-import com.teixeiradiego.clientlist.services.ClientService;
+import com.teixeiradiego.contactlist.models.Person;
+import com.teixeiradiego.contactlist.services.PersonService;
 
 @RestController
-@RequestMapping(path = "clients")
-public class ClientController {
+@RequestMapping(path = "people")
+public class PersonController {
 
 	@Autowired
-	private ClientService service;
+	private PersonService service;
 	
 	@GetMapping
-	public Page<Client> findClients(@RequestParam String filter, @RequestParam Integer currentPage, 
+	public Page<Person> find(@RequestParam String filter, @RequestParam Integer currentPage, 
 			@RequestParam Integer pageSize) {
 		
-		return service.findClients(filter, currentPage, pageSize); 
+		return service.find(filter, currentPage, pageSize); 
 		
 	}
 	

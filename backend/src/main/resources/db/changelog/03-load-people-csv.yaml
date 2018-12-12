@@ -15,16 +15,16 @@ databaseChangeLog:
             file: "db/changelog/people.csv"
             quotchar: '"'
             separator: ","
-            schemaName: "client_list"
-            tableName: "client"
-      rollback: truncate table client_list.client;
+            schemaName: "contact_list"
+            tableName: "person"
+      rollback: truncate table contact_list.person;
   - changeSet:
       id: "4"
       author: "teixeiradiego"
       changes:
         - customChange:
-            class: "com.teixeiradiego.clientlist.db.customchanges.DownloadClientPhoto"
+            class: "com.teixeiradiego.contactlist.db.customchanges.DownloadPeoplePhotos"
       rollback: 
         - customRollback:
-            class: "com.teixeiradiego.clientlist.db.customchanges.DownloadClientPhotoRollback"
+            class: "com.teixeiradiego.contactlist.db.customchanges.DownloadPeoplePhotosRollback"
         

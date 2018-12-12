@@ -1,4 +1,4 @@
-package com.teixeiradiego.clientlist;
+package com.teixeiradiego.contactlist;
 
 import java.util.Locale;
 
@@ -10,10 +10,10 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @SpringBootApplication
-public class ClientListApplication {
+public class ContactListApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ClientListApplication.class, args);
+		SpringApplication.run(ContactListApplication.class, args);
 	}
 	
 	@Bean

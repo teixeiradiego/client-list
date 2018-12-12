@@ -1,4 +1,4 @@
-package com.teixeiradiego.clientlist.db.customchanges;
+package com.teixeiradiego.contactlist.db.customchanges;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,12 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
 import liquibase.change.custom.CustomTaskChange;
-import liquibase.configuration.GlobalConfiguration;
 import liquibase.database.Database;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.CustomChangeException;
@@ -25,14 +23,14 @@ import liquibase.exception.ValidationErrors;
 import liquibase.resource.ResourceAccessor;
 
 @Component
-public class DownloadClientPhoto implements CustomTaskChange {
+public class DownloadPeoplePhotos implements CustomTaskChange {
 
 	private ResourceAccessor resourceAccessor;
 	private Properties properties;
 	
 	@Override
 	public String getConfirmationMessage() {
-		return "Client photos succesfully downloaded.";
+		return "People photos succesfully downloaded.";
 	}
 
 	@Override
@@ -67,7 +65,7 @@ public class DownloadClientPhoto implements CustomTaskChange {
 
 		JdbcConnection connection = (JdbcConnection) database.getConnection();
 		
-		File photosFolder = new File(properties.getProperty("app.storage") + File.separator + properties.getProperty("app.storage.clients.photos"));
+		File photosFolder = new File(properties.getProperty("app.storage") + File.separator + properties.getProperty("app.storage.people.photos"));
 		photosFolder.mkdirs();
 			 
 		String defaultSchema = properties.getProperty("spring.liquibase.defaultSchema");
@@ -76,7 +74,7 @@ public class DownloadClientPhoto implements CustomTaskChange {
     	
 		try {
 			
-			resultSet = connection.createStatement().executeQuery("Select * from " + defaultSchema + ".client");
+			resultSet = connection.createStatement().executeQuery("Select * from " + defaultSchema + ".person");
 			    	
 	    	while (resultSet.next()) {
 				

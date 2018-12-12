@@ -1,4 +1,4 @@
-package com.teixeiradiego.clientlist.services;
+package com.teixeiradiego.contactlist.services;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,22 +11,22 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.teixeiradiego.clientlist.models.Client;
-import com.teixeiradiego.clientlist.repositories.ClientRepository;
+import com.teixeiradiego.contactlist.models.Person;
+import com.teixeiradiego.contactlist.repositories.PersonRepository;
 
 @Service
-public class ClientService {
+public class PersonService {
 
 	@Value("${app.storage}")
 	private String storagePath;
 	
-	@Value("${app.storage.clients.photos}")
+	@Value("${app.storage.people.photos}")
 	private String photosStoragePath;
 	
 	@Autowired
-	private ClientRepository repository;
+	private PersonRepository repository;
 	
-	public Page<Client> findClients(String filter, Integer currentPage, Integer pageSize) {
+	public Page<Person> find(String filter, Integer currentPage, Integer pageSize) {
 		
 		return repository.findByNameIgnoreCaseContaining(filter, PageRequest.of(currentPage, pageSize));
 		
@@ -34,9 +34,9 @@ public class ClientService {
 	
 	public InputStream getPhoto(Integer id) throws FileNotFoundException {
 		
-		Client client = repository.findById(id).orElse(null);
+		Person person = repository.findById(id).orElse(null);
 		
-		File file = new File(storagePath + File.pathSeparator + photosStoragePath + File.pathSeparator + client.getId() + "png");
+		File file = new File(storagePath + File.pathSeparator + photosStoragePath + File.pathSeparator + person.getId() + "png");
 	
 		if(!file.exists()) {
 			return null;

@@ -2,13 +2,13 @@
 
 --changeset teixeiradiego:2
 
-CREATE TABLE client_list.client (
+CREATE TABLE contact_list.person (
 	id SERIAL ,
 	name VARCHAR(255) NOT NULL,
 	photo_url TEXT NOT NULL,
-	CONSTRAINT client_pk PRIMARY KEY (id)
+	CONSTRAINT person_pk PRIMARY KEY (id)
 );
 
-GRANT ALL ON client_list.client TO client_list;
+GRANT ALL ON contact_list.person TO contact_list;
 
---rollback DROP TABLE client_list.client;
+--rollback DROP TABLE contact_list.person;

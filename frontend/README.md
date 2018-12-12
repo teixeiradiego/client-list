@@ -1,4 +1,4 @@
-# client-list
+# contact-list
 
 ## Project setup
 ```

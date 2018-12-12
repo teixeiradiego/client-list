@@ -1,4 +1,4 @@
-package com.teixeiradiego.clientlist.db.customchanges;
+package com.teixeiradiego.contactlist.db.customchanges;
 
 import java.io.File;
 
@@ -7,12 +7,12 @@ import liquibase.database.Database;
 import liquibase.exception.CustomChangeException;
 import liquibase.exception.RollbackImpossibleException;
 
-public class DownloadClientPhotoRollback implements CustomTaskRollback {
+public class DownloadPersonPhotosRollback implements CustomTaskRollback {
 
 	@Override
 	public void rollback(Database database) throws CustomChangeException, RollbackImpossibleException {
 		
-		File photosFolder = new File("storage/client-photos/");
+		File photosFolder = new File("storage/people-photos/");
 		
 		if(photosFolder.exists()) {
 			

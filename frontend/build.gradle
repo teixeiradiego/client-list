@@ -1,0 +1,47 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			url 'https://plugins.gradle.org/m2/'
+		}
+	}
+
+	dependencies {
+		classpath 'com.moowork.gradle:gradle-node-plugin:1.2.0'
+	}
+}
+
+plugins {
+	id 'java'
+	id 'com.moowork.node' version '1.2.0'
+}
+
+node {
+	version = '11.4.0'
+	download = true
+}
+
+//npm run build
+task npmBuild(type: NpmTask, dependsOn: 'npmInstall') {
+	doFirst {
+		println "- Building project frontend for release."
+	}
+	group = 'node'
+	args = ['run', 'build']
+}
+
+processResources.dependsOn(npmBuild)
+
+//npm run dev
+task npmDev(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'node'
+	args = ['run', 'serve']
+}
+
+repositories {
+	mavenCentral()
+}
+
+// dependencies {
+// 	testCompile group: 'junit', name: 'junit', version: '4.11'
+// }

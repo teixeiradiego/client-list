@@ -14,5 +14,5 @@ databaseChangeLog:
       file: "02-create-tables.sql"
   - include:
       relativeToChangelogFile: "true"
-      file: "03-load-clients-csv.yaml"
+      file: "03-load-people-csv.yaml"
   

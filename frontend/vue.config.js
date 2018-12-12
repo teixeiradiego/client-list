@@ -8,6 +8,6 @@ module.exports = {
 			}
 		}
 	},
-	outputDir: 'target/dist',
+	outputDir: '../backend/src/main/resources/static',
 	assetsDir: 'static'
 };
