@@ -2,15 +2,15 @@
 
 #home
 
-	el-input(placeholder='Search by name', v-model='filter', style='width: 300px;', @keyup.enter.native="getPeople(1)")
+	el-input(placeholder='Search by name', v-model='filter', @keyup.enter.native="getPeople(1)")
 		el-button(slot='append', icon='el-icon-search', @click="getPeople(1)")
 
 	div(style='margin-top: 15px;')
-		el-table(:data='people', style='width: 300px;')
+		el-table(:data='people')
 			el-table-column(label='', width='80')
 				template(slot-scope="scope")
 					avatar(:username="scope.row.name", :src="scope.row.photoUrl", :size="40")
-			el-table-column(prop='name', label='Name', width='220')
+			el-table-column(prop='name', label='Name')
 
 	div(style='margin-top: 15px;')
 		el-pagination(background, layout="prev, pager, next", :total="totalPeople", :page-size="pageSize",
