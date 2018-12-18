@@ -30,6 +30,10 @@ nbdist/
 ### Dev Storage ###
 storage/
 
+backend/src/main/resources/static/
+backend/src/main/resources/public/
+backend/target/
+
 #### Frontend ###
 .DS_Store
 node_modules

@@ -18,13 +18,13 @@ databaseChangeLog:
             schemaName: "contact_list"
             tableName: "person"
       rollback: truncate table contact_list.person;
-  - changeSet:
-      id: "4"
-      author: "teixeiradiego"
-      changes:
-        - customChange:
-            class: "com.teixeiradiego.contactlist.db.customchanges.DownloadPeoplePhotos"
-      rollback: 
-        - customRollback:
-            class: "com.teixeiradiego.contactlist.db.customchanges.DownloadPeoplePhotosRollback"
+#  - changeSet:
+#      id: "4"
+#      author: "teixeiradiego"
+#      changes:
+#        - customChange:
+#            class: "com.teixeiradiego.contactlist.db.customchanges.DownloadPeoplePhotos"
+#      rollback: 
+#        - customRollback:
+#            class: "com.teixeiradiego.contactlist.db.customchanges.DownloadPeoplePhotosRollback"
         

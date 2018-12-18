@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.teixeiradiego.contactlist.models.Person;
@@ -26,9 +27,15 @@ public class PersonService {
 	@Autowired
 	private PersonRepository repository;
 	
-	public Page<Person> find(String filter, Integer currentPage, Integer pageSize) {
+	public Page<Person> find(String filter, Integer pageNumber, Integer pageSize) {
 		
-		return repository.findByNameIgnoreCaseContaining(filter, PageRequest.of(currentPage, pageSize));
+		Pageable pageable = Pageable.unpaged();
+		
+		if(pageNumber != null && pageSize != null) {
+			pageable = PageRequest.of(pageNumber, pageSize);
+		}		
+		
+		return repository.findByNameIgnoreCaseContaining(filter, pageable);
 		
 	}
 	

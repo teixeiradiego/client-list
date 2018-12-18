@@ -18,10 +18,12 @@ public class PersonController {
 	private PersonService service;
 	
 	@GetMapping
-	public Page<Person> find(@RequestParam String filter, @RequestParam Integer currentPage, 
-			@RequestParam Integer pageSize) {
+	public Page<Person> find(
+			@RequestParam(defaultValue="") String filter, 
+			@RequestParam(required=false) Integer pageNumber, 
+			@RequestParam(required=false) Integer pageSize) {
 		
-		return service.find(filter, currentPage, pageSize); 
+		return service.find(filter, pageNumber, pageSize); 
 		
 	}
 	

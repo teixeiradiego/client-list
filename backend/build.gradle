@@ -35,5 +35,7 @@ dependencies {
 	runtimeOnly('org.springframework.boot:spring-boot-devtools')
 	runtimeOnly('org.postgresql:postgresql')
 	compileOnly('org.projectlombok:lombok')
+	compile('org.springframework.boot:spring-boot-configuration-processor')
+	testCompile('ru.yandex.qatools.embed:postgresql-embedded:2.10')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
