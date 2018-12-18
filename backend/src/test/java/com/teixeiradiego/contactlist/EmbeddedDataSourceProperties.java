@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Primary
-@Profile("test")
+@Profile("integration-test")
 @ConfigurationProperties("spring.datasource")
 public class EmbeddedDataSourceProperties extends DataSourceProperties {
 

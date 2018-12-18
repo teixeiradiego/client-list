@@ -31,7 +31,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.teixeiradiego.contactlist.models.Person;
 import com.teixeiradiego.contactlist.services.PersonService;
 
-@ActiveProfiles("test")
+@ActiveProfiles("unit-test")
 @SpringBootTest
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)

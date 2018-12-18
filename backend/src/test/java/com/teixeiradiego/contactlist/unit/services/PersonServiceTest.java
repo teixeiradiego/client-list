@@ -27,7 +27,7 @@ import com.teixeiradiego.contactlist.models.Person;
 import com.teixeiradiego.contactlist.repositories.PersonRepository;
 import com.teixeiradiego.contactlist.services.PersonService;
 
-@ActiveProfiles("test")
+@ActiveProfiles("unit-test")
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class PersonServiceTest {

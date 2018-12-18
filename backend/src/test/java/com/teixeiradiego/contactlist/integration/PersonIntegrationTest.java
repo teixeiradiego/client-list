@@ -19,7 +19,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-@ActiveProfiles("test")
+@ActiveProfiles("integration-test")
 @SpringBootTest
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
@@ -34,7 +34,6 @@ public class PersonIntegrationTest {
 		this.mockMvc.perform(get("/people")
 				.param("pageNumber", "1")
 				.param("pageSize", "10"))
-				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;charset=UTF-8"))
 				.andExpect(jsonPath("$.totalElements", is(817)))

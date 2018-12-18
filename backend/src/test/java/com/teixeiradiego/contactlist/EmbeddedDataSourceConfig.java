@@ -21,7 +21,7 @@ import de.flapdoodle.embed.process.runtime.Network;
 import ru.yandex.qatools.embed.postgresql.EmbeddedPostgres;
 import ru.yandex.qatools.embed.postgresql.distribution.Version;
 
-@Profile("test")
+@Profile("integration-test")
 @Configuration
 @EnableAutoConfiguration
 public class EmbeddedDataSourceConfig {
@@ -38,7 +38,7 @@ public class EmbeddedDataSourceConfig {
     	
         URI uri = URI.create(embeddedDataSourceProperties.getUrl().substring(5));
         int port = Network.getFreeServerPort();
-        embeddedDataSourceProperties.setUrl("jdbc:postgresql://" + Network.getLocalHost() + ":" 
+        embeddedDataSourceProperties.setUrl("jdbc:postgresql://localhost:" 
         		+ port + "/" + uri.getPath().substring(1));
         
         postgres = new EmbeddedPostgres(Version.V9_6_11);

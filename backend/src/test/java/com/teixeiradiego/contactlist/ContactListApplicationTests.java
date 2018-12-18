@@ -7,7 +7,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
-@ActiveProfiles("test")
+@ActiveProfiles("unit-test")
 @RunWith(SpringRunner.class)
 public class ContactListApplicationTests {
 	
