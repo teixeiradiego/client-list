@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const personService = {
 
-	getPeople: (filter, currentPage, pageSize) => {
+	getPeople: (filter, pageNumber, pageSize) => {
 
 		return axios.get('/people', {
-			params: {filter, currentPage, pageSize}
+			params: {filter, pageNumber, pageSize}
 		});
 
 	}
